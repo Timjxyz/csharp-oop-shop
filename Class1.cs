@@ -12,7 +12,7 @@ namespace csharp_oop_shop
         public string name { get; set; }
         public string description { get; set; }
         public double price { get; set; }
-        private int iva = 22;
+        private double iva = 22;
 
         public Prodotto(string name, string descrption,double price)
         {
@@ -47,8 +47,8 @@ namespace csharp_oop_shop
         public double GetIvaPrice()
         {
 
-            double iva =(this.price*22)/100;
-            double priceIva=this.price + iva;
+            this. iva =(this.price*22)/100;
+            double priceIva=this.price + this.iva;
             return priceIva;
         }
 
