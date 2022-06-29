@@ -19,40 +19,67 @@ namespace csharp_oop_shop
             this.name = name;
             this.description = descrption;
             this.price = price;
-           
+            this.code= new Random().Next(0, 99999999);
+
         }
 
+        //Metodo per stampare prodotti a video
         public void PrintProduct()
         {
             Console.WriteLine("Nome prodotto : " + this.name);
             Console.WriteLine("Descrizione prodotto : " + this.description);
-            Console.WriteLine("Codice Prodotto : " + this.GetCode());
+            Console.WriteLine("Codice Prodotto : " + this.code);
             Console.WriteLine("Prezzo Prodotto : " + this.GetPrice() + "euro");
             Console.WriteLine("Prezzo Prodotto ivato : " + this.GetIvaPrice() + "euro");
+            Console.WriteLine("Nome esteso : " + this.GetNameExtended());
 
 
         }
 
-        public int GetCode()
-        {
-            Random random = new Random();
-            int code= random.Next(1,99999999);
-            return code;
-        }
-
+        //Metodo get prezzo
         public double GetPrice()
         {
            
             return this.price;
         }
+
+        //Metodo per calcolo iva
         public double GetIvaPrice()
         {
 
             double iva =(this.price*22)/100;
-
             double priceIva=this.price + iva;
             return priceIva;
         }
 
-    }
+        //Metodo per avere il nome esteso(nome+codice)
+        public string GetNameExtended()
+        {
+            this.name= this.name.Replace(" ", "-");
+            string nameExtended= String.Format("{0}"+"-"+"{1}",this.name,this.code);
+            return nameExtended;
+        }
+
+        //Parte bonus
+        public string GetBonus()
+        {
+            string newChar = "";
+
+            if (this.code.ToString().Length < 8)
+            {
+                for (int i = this.code.ToString().Length; i < 8; i++)
+                {
+                    newChar += "0";
+
+                }
+                newChar += this.code.ToString();
+                return newChar;
+            }
+            else
+            {
+                return this.code.ToString();
+            }
+        }
+
+        }
 }
